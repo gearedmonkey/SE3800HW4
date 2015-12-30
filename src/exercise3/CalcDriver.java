@@ -20,7 +20,7 @@ public class CalcDriver {
 		driver.init();
 	}
 	
-	//the two interfaces we need. 
+	//the two interfaces for Calculaor and the History
 	CalculatorInterface calc;
 	HistoryInterface hist;
 	
@@ -36,10 +36,19 @@ public class CalcDriver {
 		System.out.println("To use this calculator Enter a operation followed by a list of numbers "
 				+ "\n Numbers need to be separated by a single space"); // To add a second list separate list by <list><space><colon><space><list>, requred for additional operation. 
 		
+		interact();
+	}
+	
+	/**
+	 * Obtains input from the user and performs correct operation
+	 * loops until the user specifies they want to exit. 
+	 */
+	private void interact(){
+		
 		boolean done = false;
 		
 		while(!done){
-			System.out.println("\nEnter Operation and Numbers");
+			System.out.println("\nEnter Operation and Numbers\n");
 			
 			Scanner scan = new Scanner(System.in);
 			
@@ -60,14 +69,14 @@ public class CalcDriver {
 			}
 			else if(operation.equals("clear")){
 				hist.clear();
-				System.out.println("Cleared History");
+				System.out.println("Cleared History\n");
 			}
 			else{
-				System.out.println("Result was: " + performOp(operation, firstEnt));
+				System.out.println("Result was: " + performOp(operation, firstEnt) + "\n");
 			}
 			
 			//get input for user to exit or not
-			System.out.println("Enter 0 to Exit, enter any key to continue");
+			System.out.println("Enter 0 to Exit, enter any key to continue\n");
 			
 			//close scanner and exit program
 			if(scan.nextLine().equals("0")){
