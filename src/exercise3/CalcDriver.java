@@ -34,21 +34,46 @@ public class CalcDriver {
 		hist = new History();
 		
 		System.out.println("To use this calculator Enter a operation followed by a list of numbers "
-				+ "\n Numbers need to be separated by a single space");
+				+ "\n Numbers need to be separated by a single space"); // To add a second list separate list by <list><space><colon><space><list>, requred for additional operation. 
 		
-		System.out.println("\nEnter Operation and Numbers");
+		boolean done = false;
 		
-		Scanner scan = new Scanner(System.in);
-		
-		List<Integer> firstEnt;
-		String operation; 
-		
-		try{
-			String input = scan.nextLine();
-			firstEnt = parseList(input);
-			operation = parseOp(input);
-		}catch(Exception e){
-			System.out.println("FOUND AN EXCEPTION");
+		while(!done){
+			System.out.println("\nEnter Operation and Numbers");
+			
+			Scanner scan = new Scanner(System.in);
+			
+			List<Integer> firstEnt = null;
+			String operation = null; 
+			
+			try{
+				String input = scan.nextLine();
+				firstEnt = parseList(input);
+				operation = parseOp(input);
+			}catch(Exception e){ //TODO: change this to a more appropriate exception instead of generic
+				System.out.println("FOUND AN EXCEPTION");
+			}
+			
+			//if operation doesn't require calculations complete here. 
+			if(operation.equals("hist")){
+				hist.printAll();
+			}
+			else if(operation.equals("clear")){
+				hist.clear();
+				System.out.println("Cleared History");
+			}
+			else{
+				System.out.println("Result was: " + performOp(operation, firstEnt));
+			}
+			
+			//get input for user to exit or not
+			System.out.println("Enter 0 to Exit, enter any key to continue");
+			
+			//close scanner and exit program
+			if(scan.nextLine().equals("0")){
+				done = true;
+				scan.close();
+			}
 		}
 	}
 	
@@ -91,11 +116,13 @@ public class CalcDriver {
 	 *	clear
 	 *	diffsum
 	 * @param input the string with the op command
-	 * @return
+	 * @return the value of the operation. 
 	 */
 	private int performOp(String input, List<Integer> list){
+		
 		int result = 0; 
 		boolean res = true;
+		
 		if(input.equals("add")){
 			result = calc.add(list);
 		}
@@ -108,32 +135,31 @@ public class CalcDriver {
 		else if(input.equals("div")){
 			result = calc.quotient(list);
 		}
-		else if(input.equals("hist")){
-			res = false;
-			hist.printAll();
-		}
-		else if(input.equals("clear")){
-			res = false;
-			hist.clear();
-		}
 		else{
-			//we should never reach this loop
 			res = false;
-			System.out.println("Something went wrong, try again");
+			//throw exception if the input command is not recognized. 
+			throw new UnsupportedOperationException("Unable to perform the operation due to invalid input by the user");
 		}
 		
 		//add the result to history
 		if(res){
 			hist.add(result);
-			return result;
 		}
-		else
-			return -1;
+		
+		return result;
 	}
 	
-	private double performOp(String input, List<Integer> one, List<Integer> two){
-		
-	}
+	
+	/**
+	 * Used for DiffSum only, this is due to the operation excepting two lists instead of the usual single list
+	 * @param input
+	 * @param one
+	 * @param two
+	 * @return the value of the diffsum operation. 
+	 */
+//	private double performOp(String input, List<Integer> one, List<Integer> two){
+//		//TODO: implement a way to reach this by parsing the input string and checking if a colon and two valid lists are present. 
+//	}
 	
 	
 	/**
@@ -141,7 +167,7 @@ public class CalcDriver {
 	 * @param input
 	 * @return
 	 */
-	private double checkOp(String input){
-		
-	}
+//	private double checkOp(String input){
+//		
+//	}
 }

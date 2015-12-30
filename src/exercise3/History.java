@@ -96,9 +96,10 @@ public class History implements HistoryInterface {
 			System.out.println(index + ": " + cur);
 			index++;
 		}
+		
 		//reset history after printing. 
 		while(!buffer.isEmpty()){
-			hist.push(buffer.pop());		}
+			hist.push(buffer.pop());	
+			}
 	}
-
 }
