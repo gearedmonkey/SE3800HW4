@@ -84,5 +84,21 @@ public class History implements HistoryInterface {
 		
 		return retVal;
 	}
+	
+	/**
+	 * Print all of the current history to the console. 
+	 */
+	public void printAll(){
+		int index = 1; 
+		while(!hist.isEmpty()){
+			double cur = hist.pop();
+			buffer.push(cur);
+			System.out.println(index + ": " + cur);
+			index++;
+		}
+		//reset history after printing. 
+		while(!buffer.isEmpty()){
+			hist.push(buffer.pop());		}
+	}
 
 }
