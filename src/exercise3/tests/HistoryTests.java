@@ -57,7 +57,7 @@ public class HistoryTests {
 	 */
 	@Test
 	public void testGet(){
-		double expectedResult = 75;
+		double expectedResult = 20;
 		hist.add(20);//first
 		hist.add(-30);//second
 		hist.add(expectedResult);//third
@@ -70,13 +70,12 @@ public class HistoryTests {
 	/**
 	 * Trying to get a history result that is out of the bounds of the history. Expected result is null
 	 */
-	@Test
+	@Test(expected = Exception.class)
 	public void testGetNull(){
 		hist.add(20);//first
 		hist.add(-30);//second
 		hist.add(50);//third
 		double result = hist.get(4);//Get the fourth result
-		assertNull(result);
 	}
 	/**
 	 * Trying to remove and entry and then check if it was properly removed by trying to get it back.
@@ -84,7 +83,7 @@ public class HistoryTests {
 	@Test
 	public void testRemove(){
 		double remover = 123;
-		double expected = 9;
+		double expected = -70;
 		hist.add(20);//first
 		hist.add(-70);
 		hist.add(remover);//third
@@ -121,13 +120,14 @@ public class HistoryTests {
 	 * Trying to clear the history, then checks if cleared by getting a certain history item. Null is 
 	 * expected if the item does not exist. 
 	 */
-	@Test(expected = NullPointerException.class)
+	@Test
 	public void testClear(){
 		hist.add(20);
 		hist.add(80);
 		hist.add(-20);
 		hist.clear();
-		hist.get(0);//Trying to get a history item that does not exsit.
-		fail();
+		Double s = hist.get(0);//Trying to get a history item that does not exsit.
+		System.out.println(s);
+		assertNull(s);
 	}
 }
