@@ -35,7 +35,7 @@ public class CalcDriver {
 		
 		System.out.println("To use this calculator Enter a operation followed by a list of numbers "
 				+ "\n Numbers need to be separated by a single space"); // To add a second list separate list by <list><space><colon><space><list>, requred for additional operation. 
-		
+		//start obtaining user input. 
 		interact();
 	}
 	

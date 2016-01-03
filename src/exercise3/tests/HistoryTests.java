@@ -62,6 +62,9 @@ public class HistoryTests {
 		hist.add(-30);//second
 		hist.add(expectedResult);//third
 		double result = hist.get(3);//Get the third result
+		//COmment by sean: 
+		//this is returning 20 because it is returning the item that was the result three operations ago. 
+		//so it is operating as expected, this is primarily for operations using ! Ex: !3 in this case. 
 		assertEquals(expectedResult, result, DELTA);
 	}
 	/**

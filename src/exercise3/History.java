@@ -1,5 +1,6 @@
 package exercise3;
 
+import java.util.EmptyStackException;
 import java.util.Stack;
 
 /**
@@ -29,17 +30,26 @@ public class History implements HistoryInterface {
 	 * @param index
 	 * @return
 	 */
-	public double get(int index){
+	public Double get(int index){
 		
 		double retVal;
 		
 		if(index == 0)
+			try{
 			retVal = hist.peek();
+			}catch(EmptyStackException e){
+				return null;
+			}
 		else{
 			
 			//flow back through hist to get desired result
 			for(int i = 0; i<index-1; i++){
-				buffer.push(hist.pop());
+				try{
+					buffer.push(hist.pop());
+				}catch(EmptyStackException e){
+					return null;
+				}
+				
 			}
 			
 			retVal = hist.pop();
@@ -49,19 +59,21 @@ public class History implements HistoryInterface {
 			for(int i = 0; i< index; i++){
 				hist.push(buffer.pop());
 			}
-			
 		}
 		
 		return retVal;
 	}
 	
 	/**
-	 * Return 1 if successful, 0 if unsucessful
+	 * simply push the result to the history
 	 * @param result
-	 * @return
+	 * @return return 1 if successful, 
 	 */
-	public double add(double result){
-		return hist.push(result);
+	public int add(double result){
+		if(hist.push(result) == result)
+			return 1;
+		else
+			return 0;
 	}
 	
 	/**
