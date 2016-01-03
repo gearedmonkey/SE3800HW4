@@ -53,10 +53,11 @@ public class CalcDriver {
 			Scanner scan = new Scanner(System.in);
 			
 			List<Integer> firstEnt = null;
+			List<Integer> secondEnt = null;
 			String operation = null; 
+			String input = scan.nextLine();
 			
 			try{
-				String input = scan.nextLine();
 				firstEnt = parseList(input);
 				operation = parseOp(input);
 			}catch(Exception e){ //TODO: change this to a more appropriate exception instead of generic
@@ -70,6 +71,10 @@ public class CalcDriver {
 			else if(operation.equals("clear")){
 				hist.clear();
 				System.out.println("Cleared History\n");
+			}
+			else if(operation.equals("diffsum")){
+				secondEnt = parseList(input.split(":")[1]);
+				System.out.println("Result was : " + performDiffSum(firstEnt, secondEnt) + "\n");
 			}
 			else{
 				System.out.println("Result was: " + performOp(operation, firstEnt) + "\n");
@@ -93,9 +98,16 @@ public class CalcDriver {
 	 */
 	private List<Integer> parseList(String input){
 		
+		String opVal;
+		//strip second list if contains colon
+		if(input.contains(":"))
+			opVal = input.split(":")[0];
+		else
+			opVal = input;
+		
 		List<Integer> list = new ArrayList<Integer>();
 		
-		String[] nums = input.split(" ");
+		String[] nums = opVal.split(" ");
 		
 		for(int i = 1; i<nums.length; i++){
 			list.add(Integer.parseInt(nums[i]));
@@ -166,9 +178,9 @@ public class CalcDriver {
 	 * @param two
 	 * @return the value of the diffsum operation. 
 	 */
-//	private double performOp(String input, List<Integer> one, List<Integer> two){
-//		//TODO: implement a way to reach this by parsing the input string and checking if a colon and two valid lists are present. 
-//	}
+	private double performDiffSum(List<Integer> one, List<Integer> two){
+		return calc.sumDifference(one, two);
+	}
 	
 	
 	/**
