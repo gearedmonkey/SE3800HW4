@@ -27,11 +27,6 @@ public class CalcTests {
 		list.add(4);
 	}
 
-	@After
-	public void tearDown() throws Exception {
-		
-	}
-
 	@Test
 	public void testAdd() {
 		int expected = 10;
@@ -55,11 +50,37 @@ public class CalcTests {
 	
 	@Test
 	public void testQuotient() {
-		
+		int expected = 0;
+		int result = calc.quotient(list);
+		assertEquals(expected, result, DELTA);
+	}
+	
+	@Test(expected = ArithmeticException.class)
+	public void testZeroQuotient(){
+		ArrayList<Integer> nums = new ArrayList<Integer>();
+		nums.add(5);
+		nums.add(0);
+		nums.add(4);
+		//should throw exception due to nums containing a zero. 
+		calc.quotient(nums);
+	}
+	
+	@Test(expected = ArithmeticException.class)
+	public void testTooFewQuotient() {
+		ArrayList<Integer> nums = new ArrayList<Integer>();
+		nums.add(1);
+		calc.quotient(nums);
 	}
 	
 	@Test
 	public void testDiffSum() {
-		fail("Not yet implemented");
+		ArrayList<Integer> nums = new ArrayList<Integer>();
+		nums.add(5);
+		nums.add(6);
+		nums.add(7);
+		int expected = -8;
+		int result = calc.sumDifference(list, nums);
+		assertEquals(expected, result, DELTA);
 	}
+	
 }
