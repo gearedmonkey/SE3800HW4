@@ -6,5 +6,5 @@ public interface HistoryInterface {
 	public Double get(int index);
 	public int add(double result);
 	public double remove(int index);
-	public void printAll();
+	public String printAll();
 }
