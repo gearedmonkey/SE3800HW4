@@ -66,7 +66,7 @@ public class CalcDriver {
 			
 			//if operation doesn't require calculations complete here. 
 			if(operation.equals("hist")){
-				hist.printAll();
+				System.out.println(hist.printAll());
 			}
 			else if(operation.equals("clear")){
 				hist.clear();
@@ -179,7 +179,9 @@ public class CalcDriver {
 	 * @return the value of the diffsum operation. 
 	 */
 	private double performDiffSum(List<Integer> one, List<Integer> two){
-		return calc.sumDifference(one, two);
+		double val = calc.sumDifference(one, two);
+		hist.add(val);
+		return val;
 	}
 	
 	

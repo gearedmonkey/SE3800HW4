@@ -100,12 +100,13 @@ public class History implements HistoryInterface {
 	/**
 	 * Print all of the current history to the console. 
 	 */
-	public void printAll(){
+	public String printAll(){
+		String retVal = "";
 		int index = 1; 
 		while(!hist.isEmpty()){
 			double cur = hist.pop();
 			buffer.push(cur);
-			System.out.println(index + ": " + cur);
+			retVal += (index + ": " + cur +"\n");
 			index++;
 		}
 		
@@ -113,5 +114,7 @@ public class History implements HistoryInterface {
 		while(!buffer.isEmpty()){
 			hist.push(buffer.pop());	
 			}
+		
+		return retVal;
 	}
 }
