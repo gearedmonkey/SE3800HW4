@@ -70,10 +70,8 @@ public class History implements HistoryInterface {
 	 * @return return 1 if successful, 
 	 */
 	public int add(double result){
-		if(hist.push(result) == result)
-			return 1;
-		else
-			return 0;
+		hist.push(result);
+		return 1;
 	}
 	
 	/**

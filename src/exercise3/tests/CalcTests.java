@@ -53,7 +53,6 @@ public class CalcTests {
 		int result = calc.quotient(list);
 		assertEquals(expected, result, DELTA);
 	}
-	
 	@Test(expected = ArithmeticException.class)
 	public void testZeroQuotient(){
 		ArrayList<Integer> nums = new ArrayList<Integer>();

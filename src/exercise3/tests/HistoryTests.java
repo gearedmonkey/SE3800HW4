@@ -78,6 +78,16 @@ public class HistoryTests {
 		double result = hist.get(4);//Get the fourth result
 	}
 	/**
+	 * Trying to get the first thing in a list of 1 size
+	 */
+	@Test
+	public void testGetZero(){
+		double expected = 20;
+		hist.add(expected);
+		double result = hist.get(0);
+		assertEquals(expected, result, DELTA);
+	}
+	/**
 	 * Trying to remove and entry and then check if it was properly removed by trying to get it back.
 	 */
 	@Test
@@ -127,7 +137,16 @@ public class HistoryTests {
 		hist.add(-20);
 		hist.clear();
 		Double s = hist.get(0);//Trying to get a history item that does not exsit.
-		System.out.println(s);
 		assertNull(s);
+	}
+	/**
+	 * Test the expected output of printing the history.
+	 */
+	@Test
+	public void testPrintAll(){
+		String expected = "1: -20.0\n";
+		hist.add(20);
+		String result = hist.printAll();
+		assertEquals(expected, result);
 	}
 }
