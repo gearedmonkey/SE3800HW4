@@ -139,4 +139,14 @@ public class HistoryTests {
 		Double s = hist.get(0);//Trying to get a history item that does not exsit.
 		assertNull(s);
 	}
+	/**
+	 * Test the expected output of printing the history.
+	 */
+	@Test
+	public void testPrintAll(){
+		String expected = "1: -20.0\n";
+		hist.add(20);
+		String result = hist.printAll();
+		assertEquals(expected, result);
+	}
 }
