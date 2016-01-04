@@ -86,6 +86,9 @@ public class Calculator implements CalculatorInterface {
 		int result = 0;
 		// Start quotient at the first number in the list
 		// if there is one
+		if(numbers.size() == 1){
+			throw new ArithmeticException("To few numbers for quotient!");
+		}
 		if (numbers.size() != 0) {
 			result = numbers.get(0);
 		}
@@ -112,7 +115,8 @@ public class Calculator implements CalculatorInterface {
 		int sumOfSet2 = 0;
 		int result = 0;
 		sumOfSet1 = this.add(numbers1);
-		sumOfSet2 = this.add(numbers1);
+		sumOfSet2 = this.add(numbers2);
+		System.out.println("sum1 : " + sumOfSet1 + " sum2: " + sumOfSet2);
 		result = sumOfSet1 - sumOfSet2;
 		return result;
 	}
