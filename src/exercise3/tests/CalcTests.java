@@ -5,7 +5,6 @@ import static org.junit.Assert.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import exercise3.CalculatorInterface;
@@ -82,5 +81,4 @@ public class CalcTests {
 		int result = calc.sumDifference(list, nums);
 		assertEquals(expected, result, DELTA);
 	}
-	
 }
