@@ -45,7 +45,6 @@ public class Calculator implements CalculatorInterface {
 		for (int i = numbers.size()-1; i > 0; i--) {
 			Integer current = numbers.get(i);
 			result = Math.subtractExact(result,current );
-			System.out.println("Result is: " + result);
 		}
 		return result;
 	}
