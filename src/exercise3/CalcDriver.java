@@ -60,9 +60,6 @@ public class CalcDriver {
 			try{
 				firstEnt = parseList(input);
 				operation = parseOp(input);
-			}catch(Exception e){ //TODO: change this to a more appropriate exception instead of generic
-				System.out.println("FOUND AN EXCEPTION");
-			}
 			
 			//if operation doesn't require calculations complete here. 
 			if(operation.equals("hist")){
@@ -78,6 +75,16 @@ public class CalcDriver {
 			}
 			else{
 				System.out.println("Result was: " + performOp(operation, firstEnt) + "\n");
+			}
+			}catch(NullPointerException e){ //TODO: change this to a more appropriate exception instead of generic
+				System.out.println("Invalid entry for the operation. Please only use spaces in between "
+						+ "numbers");
+			}
+			catch(UnsupportedOperationException e){
+				System.out.println("invalid entry, please enter a valid operation");
+			}
+			catch(Exception e){
+				System.out.println("An unknown error occurred, please try again");
 			}
 			
 			//get input for user to exit or not
