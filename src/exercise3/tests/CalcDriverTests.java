@@ -9,6 +9,11 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+/**
+ * 
+ * @author khodls
+ *
+ */
 public class CalcDriverTests {
 
 	private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();

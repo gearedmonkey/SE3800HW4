@@ -173,7 +173,6 @@ public class CalcDriver {
 		if(res){
 			hist.add(result);
 		}
-		
 		return result;
 	}
 	

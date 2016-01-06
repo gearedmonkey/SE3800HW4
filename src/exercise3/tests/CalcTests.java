@@ -74,6 +74,7 @@ public class CalcTests {
 		bigList.add(Integer.MAX_VALUE);
 		bigList.add(Integer.MAX_VALUE);
 		bigList.add(Integer.MAX_VALUE);
+		bigList.add(20);
 		calc.subtract(bigList);
 	}
 	
