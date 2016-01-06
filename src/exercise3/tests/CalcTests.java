@@ -48,7 +48,7 @@ public class CalcTests {
 		calc.add(null);
 	}
 	
-	@Test(expected = ArithmeticException.class)
+	@Test(expected = Exception.class)
 	public void testAddOverflow(){
 		ArrayList<Integer> bigList = new ArrayList<Integer>();
 		 bigList.add(Integer.MAX_VALUE);
@@ -68,7 +68,7 @@ public class CalcTests {
 		calc.subtract(null);
 	}
 	
-	@Test(expected = ArithmeticException.class)
+	@Test(expected = Exception.class)
 	public void testSubtractOverflow(){
 		ArrayList<Integer> bigList = new ArrayList<Integer>();
 		bigList.add(Integer.MAX_VALUE);
@@ -89,7 +89,7 @@ public class CalcTests {
 		calc.product(null);
 	}
 	
-	@Test(expected = ArithmeticException.class) 
+	@Test(expected = Exception.class) 
 	public void testProductOverflow(){
 		ArrayList<Integer> bigList = new ArrayList<Integer>();
 		bigList.add(Integer.MAX_VALUE);
@@ -105,7 +105,7 @@ public class CalcTests {
 		assertEquals(expected, result, DELTA);
 	}
 	
-	@Test(expected = ArithmeticException.class)
+	@Test(expected = Exception.class)
 	public void testZeroQuotient(){
 		ArrayList<Integer> nums = new ArrayList<Integer>();
 		nums.add(5);
@@ -115,7 +115,7 @@ public class CalcTests {
 		calc.quotient(nums);
 	}
 	
-	@Test(expected = ArithmeticException.class)
+	@Test(expected = Exception.class)
 	public void testTooFewQuotient() {
 		ArrayList<Integer> nums = new ArrayList<Integer>();
 		nums.add(1);
@@ -133,7 +133,7 @@ public class CalcTests {
 		assertEquals(expected, result, DELTA);
 	}
 	
-	@Test(expected = ArithmeticException.class)
+	@Test(expected = Exception.class)
 	public void testDiffSumOverFlow(){
 		ArrayList<Integer> bigList = new ArrayList<Integer>();
 		bigList.add(Integer.MAX_VALUE);
