@@ -81,7 +81,7 @@ public class CalcDriver {
 						+ "numbers");
 			}
 			catch(UnsupportedOperationException e){
-				System.out.println("invalid entry, please enter a valid operation");
+				System.out.println(e.getMessage());
 			}
 			catch(Exception e){
 				System.out.println("An unknown error occurred, please try again");
@@ -117,7 +117,18 @@ public class CalcDriver {
 		String[] nums = opVal.split(" ");
 		
 		for(int i = 1; i<nums.length; i++){
-			list.add(Integer.parseInt(nums[i]));
+			//if the input contains an exclamation point get the history at the specified number.
+			if(nums[i].contains("!")){
+				Double val = hist.get(Integer.parseInt(nums[i].substring(1)));
+				
+				if(val != null){
+					list.add(val.intValue());
+				}
+				else //throw exception if the number is too large for the current history. 
+					throw new UnsupportedOperationException("History does not exist");
+			}
+			else
+				list.add(Integer.parseInt(nums[i]));
 		}
 		
 		return list;
