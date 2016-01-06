@@ -21,7 +21,7 @@ public class Calculator implements CalculatorInterface {
 	public int add(List<Integer> numbers) {
 		int sum = 0;
 		for (Integer i : numbers) {
-			sum += i;
+			sum = Math.addExact(i, sum);
 		}
 		return sum;
 	}
@@ -42,9 +42,10 @@ public class Calculator implements CalculatorInterface {
 			result = numbers.get(0);
 		}
 		//Start subtraction at second number in list
-		for (int i = 1; i < numbers.size(); i++) {
+		for (int i = numbers.size()-1; i > 0; i--) {
 			Integer current = numbers.get(i);
-			result -= current;
+			result = Math.subtractExact(result,current );
+			System.out.println("Result is: " + result);
 		}
 		return result;
 	}
@@ -66,7 +67,7 @@ public class Calculator implements CalculatorInterface {
 		}
 		//Loop through all numbers and multiple them together.
 		for (Integer i : numbers) {
-			result *= i;
+			result = Math.multiplyExact(i, result);
 		}
 		return result;
 	}
