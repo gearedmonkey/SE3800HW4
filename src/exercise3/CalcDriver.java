@@ -190,14 +190,4 @@ public class CalcDriver {
 		hist.add(val);
 		return val;
 	}
-	
-	
-	/**
-	 * Checks if the input from the user is a valid entry. 
-	 * @param input
-	 * @return
-	 */
-//	private double checkOp(String input){
-//		
-//	}
 }
