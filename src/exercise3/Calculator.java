@@ -116,7 +116,6 @@ public class Calculator implements CalculatorInterface {
 		int result = 0;
 		sumOfSet1 = this.add(numbers1);
 		sumOfSet2 = this.add(numbers2);
-		System.out.println("sum1 : " + sumOfSet1 + " sum2: " + sumOfSet2);
 		result = sumOfSet1 - sumOfSet2;
 		return result;
 	}

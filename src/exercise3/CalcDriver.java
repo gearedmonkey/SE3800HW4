@@ -24,14 +24,15 @@ public class CalcDriver {
 	CalculatorInterface calc;
 	HistoryInterface hist;
 	
-	
+	public CalcDriver(){
+		calc = new Calculator();
+		hist = new History();
+	}
 	/**
 	 * Gets all of the data from the user and instantiates Calculator and History objects. 
 	 * calls appropriate functions to continue the program
 	 */
-	private void init(){
-		calc = new Calculator();
-		hist = new History();
+	public void init(){
 		
 		System.out.println("To use this calculator Enter a operation followed by a list of numbers "
 				+ "\n Numbers need to be separated by a single space"); // To add a second list separate list by <list><space><colon><space><list>, requred for additional operation. 
@@ -103,7 +104,7 @@ public class CalcDriver {
 	 * @param input
 	 * @return
 	 */
-	private List<Integer> parseList(String input){
+	public List<Integer> parseList(String input){
 		
 		String opVal;
 		//strip second list if contains colon
@@ -139,7 +140,7 @@ public class CalcDriver {
 	 * @param input
 	 * @return
 	 */
-	private String parseOp(String input){
+	public String parseOp(String input){
 		//split on spaces and return first element
 		return input.split((" "))[0];
 	}
@@ -157,7 +158,7 @@ public class CalcDriver {
 	 * @param input the string with the op command
 	 * @return the value of the operation. 
 	 */
-	private int performOp(String input, List<Integer> list){
+	public int performOp(String input, List<Integer> list){
 		
 		int result = 0; 
 		boolean res = true;
@@ -195,7 +196,7 @@ public class CalcDriver {
 	 * @param two
 	 * @return the value of the diffsum operation. 
 	 */
-	private double performDiffSum(List<Integer> one, List<Integer> two){
+	public double performDiffSum(List<Integer> one, List<Integer> two){
 		double val = calc.sumDifference(one, two);
 		hist.add(val);
 		return val;
