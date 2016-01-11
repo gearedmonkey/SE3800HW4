@@ -12,7 +12,7 @@ import exercise3.CalcDriver;
 
 /**
  * 
- * @author khodls
+ * @author khodls, longatoj
  *
  */
 public class CalcDriverTest {
@@ -103,19 +103,21 @@ public class CalcDriverTest {
 		String result = driver.parseOp(input);
 		assertEquals(result, expected);
 	}
+	
 	@Test
 	public void testBranchHistoryOnParseList(){
+		
 		String operation = "div";
+		List<Integer> expected = new ArrayList<Integer>();
+		expected.add(5);
+		
 		List<Integer> numbers = new ArrayList<Integer>();
 		numbers.add(4);
 		numbers.add(8);
 		int operationResult = driver.performOp(operation, numbers);
-		
-		List<Integer> result = driver.parseList("5 !1");
-		List<Integer> expected = new ArrayList<Integer>();
-		expected.add(5);
-		System.out.println("The operation result is: " + operationResult);
 		expected.add(operationResult);
-		assertEquals(result, expected);
+		
+		List<Integer> result = driver.parseList(" 5 !1");
+		assertEquals(expected, result);
 	}
 }

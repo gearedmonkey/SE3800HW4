@@ -35,7 +35,8 @@ public class CalcDriver {
 	public void init(){
 		
 		System.out.println("To use this calculator Enter a operation followed by a list of numbers "
-				+ "\n Numbers need to be separated by a single space"); // To add a second list separate list by <list><space><colon><space><list>, requred for additional operation. 
+				+ "\n Numbers need to be separated by a single space, to include a second list when using diffsum ensure a space is added after the colon");
+		// To add a second list separate list by <list><space><colon><space><list>, required for additional operation. 
 		//start obtaining user input. 
 		interact();
 	}
@@ -71,7 +72,9 @@ public class CalcDriver {
 				System.out.println("Cleared History\n");
 			}
 			else if(operation.equals("diffsum")){
+				System.out.println("input: " + input);
 				secondEnt = parseList(input.split(":")[1]);
+				System.out.println("Second: "+ secondEnt);
 				System.out.println("Result was : " + performDiffSum(firstEnt, secondEnt) + "\n");
 			}
 			else{
@@ -105,7 +108,7 @@ public class CalcDriver {
 	 * @return
 	 */
 	public List<Integer> parseList(String input){
-		
+		System.out.println("Starting parse");
 		String opVal;
 		//strip second list if contains colon
 		if(input.contains(":"))
@@ -116,7 +119,7 @@ public class CalcDriver {
 		List<Integer> list = new ArrayList<Integer>();
 		
 		String[] nums = opVal.split(" ");
-		
+
 		for(int i = 1; i<nums.length; i++){
 			//if the input contains an exclamation point get the history at the specified number.
 			if(nums[i].contains("!")){
@@ -131,7 +134,7 @@ public class CalcDriver {
 			else
 				list.add(Integer.parseInt(nums[i]));
 		}
-		
+		System.out.println("list in method" + list + "with input: "+ input);
 		return list;
 	}
 	
@@ -159,7 +162,7 @@ public class CalcDriver {
 	 * @return the value of the operation. 
 	 */
 	public int performOp(String input, List<Integer> list){
-		
+		System.out.println("INPUT FOR PERFORM: " + input);
 		int result = 0; 
 		boolean res = true;
 		
