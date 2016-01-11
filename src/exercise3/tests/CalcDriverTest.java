@@ -22,6 +22,9 @@ public class CalcDriverTest {
 	public void setup(){
 		driver = new CalcDriver();
 	}
+	/**
+	 * Try to parse the list and get the numbers back
+	 */
 	@Test
 	public void testPraseList(){
 		String input = "add 5 0 ";
@@ -31,7 +34,9 @@ public class CalcDriverTest {
 		List<Integer> ints = driver.parseList(input);
 		assertEquals(ints,expected);
 	}
-	
+	/**
+	 * Try to perform the add operation
+	 */
 	@Test
 	public void testPerformOpAdd(){
 		String operation = "add";
@@ -43,6 +48,9 @@ public class CalcDriverTest {
 		assertEquals(result, expected);
 		
 	}
+	/**
+	 * Try to perfor the subtraction operation
+	 */
 	@Test
 	public void testPerformOpSub(){
 		String operation = "sub";
@@ -53,6 +61,9 @@ public class CalcDriverTest {
 		int result = driver.performOp(operation, numbers);
 		assertEquals(result, expected);
 	}
+	/**
+	 * Try to perform the multiply operation
+	 */
 	@Test
 	public void testPerformOpMul(){
 		String operation = "mul";
@@ -63,6 +74,9 @@ public class CalcDriverTest {
 		int result = driver.performOp(operation, numbers);
 		assertEquals(result, expected);
 	}
+	/**
+	 * Try to perform the division operation
+	 */
 	@Test
 	public void testPerformOpDiv(){
 		String operation = "div";
@@ -73,7 +87,9 @@ public class CalcDriverTest {
 		int result = driver.performOp(operation, numbers);
 		assertEquals(result, expected);
 	}
-	
+	/**
+	 * Try to call a operation that does not exist
+	 */
 	@Test(expected = UnsupportedOperationException.class)
 	public void testPerformOpBadOperation(){
 		String operation = "Bang";
@@ -84,6 +100,9 @@ public class CalcDriverTest {
 		int result = driver.performOp(operation, numbers);
 		assertEquals(result, expected);
 	}
+	/**
+	 * Try to call the diffsum operation
+	 */
 	@Test
 	public void testPerformDiffSum(){
 		List<Integer> numbers1 = new ArrayList<Integer>();
@@ -96,6 +115,9 @@ public class CalcDriverTest {
 		double result = driver.performDiffSum(numbers1, numbers2);
 		assertEquals(result, expected, DELTA);
 	}
+	/**
+	 * Try to call the div operation
+	 */
 	@Test
 	public void testParseOp(){
 		String expected = "div";
@@ -103,9 +125,12 @@ public class CalcDriverTest {
 		String result = driver.parseOp(input);
 		assertEquals(result, expected);
 	}
+	/**
+	 * Try to test the potential if statement of when there is a history item being called in the operation
+	 */
 	@Test
 	public void testBranchHistoryOnParseList(){
-		String operation = "div";
+		String operation = "add";
 		List<Integer> numbers = new ArrayList<Integer>();
 		numbers.add(4);
 		numbers.add(8);
