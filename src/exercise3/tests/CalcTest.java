@@ -16,7 +16,7 @@ import exercise3.Calculator;
  * @author khodls
  *
  */
-public class CalcTests {
+public class CalcTest {
 	
 	CalculatorInterface calc;
 	List<Integer> list;

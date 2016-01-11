@@ -12,7 +12,7 @@ import exercise3.History;
  * @author Jordan Longato(longatoj@msoe.edu)
  *
  */
-public class HistoryTests {
+public class HistoryTest {
 	private History hist;
 	private final double DELTA = .001;
 	@Before

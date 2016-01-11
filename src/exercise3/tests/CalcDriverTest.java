@@ -15,7 +15,7 @@ import exercise3.CalcDriver;
  * @author khodls
  *
  */
-public class CalcDriverTests {
+public class CalcDriverTest {
 	CalcDriver driver;
 	double DELTA = .001;
 	@Before
