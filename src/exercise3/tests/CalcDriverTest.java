@@ -2,9 +2,13 @@ package exercise3.tests;
 
 import static org.junit.Assert.*;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -17,10 +21,28 @@ import exercise3.CalcDriver;
  */
 public class CalcDriverTest {
 	CalcDriver driver;
+	  private ByteArrayOutputStream sysout;
+	    private ByteArrayOutputStream syserr;
+	    private ByteArrayInputStream sysin;
+	    
+	    
 	double DELTA = .001;
 	@Before
-	public void setup(){
+	public void setup() throws Exception {
 		driver = new CalcDriver();
+		
+		 sysout = new ByteArrayOutputStream();
+	        syserr = new ByteArrayOutputStream();
+
+	        System.setOut(new PrintStream(sysout, true, "UTF8"));
+	        System.setErr(new PrintStream(syserr, true, "UTF8"));
+	}
+	
+	@After
+	public void tearDown() throws Exception{
+		System.setOut(System.out);
+		System.setIn(System.in);
+		System.setErr(System.err);
 	}
 	/**
 	 * Try to parse the list and get the numbers back
@@ -142,5 +164,108 @@ public class CalcDriverTest {
 		
 		List<Integer> result = driver.parseList(" 5 !1");
 		assertEquals(expected, result);
+	}
+	
+	
+	@Test
+	public void testInitNormalOperation() throws Exception{
+		String newLine = System.getProperty("line.separator");
+	        driver.init();
+	        String console = sysout.toString();
+	       String expected = "To use this calculator Enter a operation followed by a list of numbers"
+					+ "\nNumbers need to be separated by a single space, to include a second list when using diffsum ensure a space is added after the colon" + newLine;
+	        
+	        assertEquals(expected, console);
+	}
+	
+	@Test
+	public void testSingleAddQuit() throws Exception{
+		String newLine = System.getProperty("line.separator");
+		String input = "add 1 2 3" + newLine + "0";
+		sysin = new ByteArrayInputStream(input.getBytes("UTF8"));
+	    System.setIn(sysin);
+	    
+	    driver.interact();
+	    String console = sysout.toString();
+	    String expected = "\nEnter Operation and Numbers\n" + newLine + "Result was: 6\n" + newLine + "Enter 0 to Exit, enter any key to continue\n" + newLine;
+	    assertEquals(expected, console);
+	}
+	
+	@Test
+	public void testHistOperation() throws Exception{
+		String newLine = System.getProperty("line.separator");
+		List<Integer> numbers = new ArrayList<Integer>();
+		numbers.add(4);
+		numbers.add(8);
+		driver.performOp("add",numbers );
+		
+		String input = "hist" + newLine + "0";
+		sysin = new ByteArrayInputStream(input.getBytes("UTF8"));
+	    System.setIn(sysin);
+	    
+	    driver.interact();
+	    String console = sysout.toString();
+	    String expected = "\nEnter Operation and Numbers\n" + newLine + "1: 12.0\n" + newLine + "Enter 0 to Exit, enter any key to continue\n" + newLine;
+	    assertEquals(expected, console);
+	}
+	
+	@Test
+	public void testClearOperation() throws Exception{
+		String newLine = System.getProperty("line.separator");
+		List<Integer> numbers = new ArrayList<Integer>();
+		numbers.add(4);
+		numbers.add(8);
+		driver.performOp("add",numbers );
+		
+		String input = "clear" + newLine + "0";
+		sysin = new ByteArrayInputStream(input.getBytes("UTF8"));
+	    System.setIn(sysin);
+	    
+	    driver.interact();
+	    String console = sysout.toString();
+	    String expected = "\nEnter Operation and Numbers\n" + newLine + "Cleared History\n" + newLine + "Enter 0 to Exit, enter any key to continue\n" + newLine;
+	    assertEquals(expected, console);
+	}
+	
+	@Test
+	public void testDiffSumOperation() throws Exception{
+		String newLine = System.getProperty("line.separator");
+		
+		String input = "diffsum 1 2 5: 5 6 8" + newLine + "0";
+		sysin = new ByteArrayInputStream(input.getBytes("UTF8"));
+	    System.setIn(sysin);
+	    
+	    driver.interact();
+	    String console = sysout.toString();
+	    String expected = "\nEnter Operation and Numbers\n" + newLine + "Result was : -11.0\n" + newLine + "Enter 0 to Exit, enter any key to continue\n" + newLine;
+	    assertEquals(expected, console);
+	}
+	
+	@Test
+	public void testInvalidInput() throws Exception{
+		String newLine = System.getProperty("line.separator");
+		
+		String input = "adfasdfa1 2 5: 5 6 8" + newLine + "0";
+		sysin = new ByteArrayInputStream(input.getBytes("UTF8"));
+	    System.setIn(sysin);
+	    
+	    driver.interact();
+	    String console = sysout.toString();
+	    String expected = "\nEnter Operation and Numbers\n" + newLine + "Unable to perform the operation due to invalid input by the user" + newLine + "Enter 0 to Exit, enter any key to continue\n" + newLine;
+	    assertEquals(expected, console);
+	}
+	
+	@Test
+	public void testNoSpacesInput() throws Exception{
+		String newLine = System.getProperty("line.separator");
+		
+		String input = "add 1a25658" + newLine + "0";
+		sysin = new ByteArrayInputStream(input.getBytes("UTF8"));
+	    System.setIn(sysin);
+	    
+	    driver.interact();
+	    String console = sysout.toString();
+	    String expected = "\nEnter Operation and Numbers\n" + newLine + "An unknown error occurred, please try again" + newLine + "Enter 0 to Exit, enter any key to continue\n" + newLine;
+	    assertEquals(expected, console);
 	}
 }

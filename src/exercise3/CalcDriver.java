@@ -18,6 +18,7 @@ public class CalcDriver {
 	public static void main(String[] args){
 		CalcDriver driver = new CalcDriver();
 		driver.init();
+		driver.interact();
 	}
 	
 	//the two interfaces for Calculaor and the History
@@ -34,18 +35,17 @@ public class CalcDriver {
 	 */
 	public void init(){
 		
-		System.out.println("To use this calculator Enter a operation followed by a list of numbers "
-				+ "\n Numbers need to be separated by a single space, to include a second list when using diffsum ensure a space is added after the colon");
+		System.out.println("To use this calculator Enter a operation followed by a list of numbers"
+				+ "\nNumbers need to be separated by a single space, to include a second list when using diffsum ensure a space is added after the colon");
 		// To add a second list separate list by <list><space><colon><space><list>, required for additional operation. 
 		//start obtaining user input. 
-		interact();
 	}
 	
 	/**
 	 * Obtains input from the user and performs correct operation
 	 * loops until the user specifies they want to exit. 
 	 */
-	private void interact(){
+	public void interact(){
 		
 		boolean done = false;
 		
@@ -78,7 +78,7 @@ public class CalcDriver {
 			else{
 				System.out.println("Result was: " + performOp(operation, firstEnt) + "\n");
 			}
-			}catch(NullPointerException e){ //TODO: change this to a more appropriate exception instead of generic
+			}catch(NullPointerException e){ 
 				System.out.println("Invalid entry for the operation. Please only use spaces in between "
 						+ "numbers");
 			}

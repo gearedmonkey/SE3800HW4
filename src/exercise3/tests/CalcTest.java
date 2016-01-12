@@ -34,6 +34,8 @@ public class CalcTest {
 		list.add(2);
 		list.add(3);
 		list.add(4);
+		
+		
 	}
 
 	@Test
@@ -146,4 +148,5 @@ public class CalcTest {
 	public void testDiffSumOneListNull(){
 		calc.sumDifference(list, null);
 	}
+
 }

@@ -144,7 +144,7 @@ public class HistoryTest {
 	 */
 	@Test
 	public void testPrintAll(){
-		String expected = "1: -20.0\n";
+		String expected = "1: 20.0\n";
 		hist.add(20);
 		String result = hist.printAll();
 		assertEquals(expected, result);
