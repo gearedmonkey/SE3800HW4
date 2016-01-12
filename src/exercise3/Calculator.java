@@ -21,7 +21,7 @@ public class Calculator implements CalculatorInterface {
 	public int add(List<Integer> numbers) {
 		int sum = 0;
 		for (Integer i : numbers) {
-			sum = Math.subtractExact(i, sum);
+			sum = Math.addExact(i, sum);
 		}
 		return sum;
 	}
