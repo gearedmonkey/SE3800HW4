@@ -130,7 +130,7 @@ public class CalcDriverTest {
 	 */
 	@Test
 	public void testBranchHistoryOnParseList(){
-		
+		String operation = "div";
 		List<Integer> expected = new ArrayList<Integer>();
 		expected.add(5);
 		

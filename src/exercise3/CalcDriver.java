@@ -72,9 +72,7 @@ public class CalcDriver {
 				System.out.println("Cleared History\n");
 			}
 			else if(operation.equals("diffsum")){
-				System.out.println("input: " + input);
 				secondEnt = parseList(input.split(":")[1]);
-				System.out.println("Second: "+ secondEnt);
 				System.out.println("Result was : " + performDiffSum(firstEnt, secondEnt) + "\n");
 			}
 			else{
@@ -108,7 +106,6 @@ public class CalcDriver {
 	 * @return
 	 */
 	public List<Integer> parseList(String input){
-		System.out.println("Starting parse");
 		String opVal;
 		//strip second list if contains colon
 		if(input.contains(":"))
@@ -134,7 +131,6 @@ public class CalcDriver {
 			else
 				list.add(Integer.parseInt(nums[i]));
 		}
-		System.out.println("list in method" + list + "with input: "+ input);
 		return list;
 	}
 	
@@ -162,7 +158,6 @@ public class CalcDriver {
 	 * @return the value of the operation. 
 	 */
 	public int performOp(String input, List<Integer> list){
-		System.out.println("INPUT FOR PERFORM: " + input);
 		int result = 0; 
 		boolean res = true;
 		
